@@ -75,8 +75,8 @@ if (isset($_GET['productCode'])) {
                     <p><?=$product['productIntroduction']?></p>
                 </div>
                 <div class="text-center mb-5">
-                    <a href="add_to_cart_page.html" class="btn btn-primary my-2 p-2 product-btn">Add to Cart</a>
-                    <a href="add_to_favorite_page.html" class="btn btn-dark my-2 p-2 product-btn">Add to Favorite</a>
+                    <a href="" class="btn btn-primary my-2 p-2 product-btn">Add to Cart</a>
+                    <a href="" class="btn btn-dark my-2 p-2 product-btn">Add to Favorite</a>
                 </div>
             </div>            
         </div>

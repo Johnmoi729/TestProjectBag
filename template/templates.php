@@ -1,6 +1,19 @@
 <?php
 
 $mainCSS = <<< EOT
+.menu-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.gender-link {
+    margin: 32px 0 8px;
+    color: #666;
+    opacity: 0.5;
+}
+.gender-link:hover {
+    opacity: 1;
+}
 .product {
     margin: 10px;
     padding: 10px;
@@ -177,6 +190,18 @@ $html = <<< EOT
             text-align: left;
             margin-top: 32px;
             font-size: 28px!important;
+        }
+        .jumbotron {
+            background-image: url('../imgs/advert/jumbotron.jpg');
+            background-size: cover;
+            background-position: 0% 60%;
+            color: white;
+            text-align: center;
+            padding: 120px 0;
+            text-align: left;
+        }
+        .jumbotron .container {
+            padding-left: 40px;
         }
 
         /* Header CSS */
