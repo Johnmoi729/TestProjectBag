@@ -26,7 +26,8 @@ $mainCSS = <<< EOT
 }
 .product img {
     max-width: 100%; 
-    height: auto; 
+    height: auto;
+    width: 100%; 
 }
 
 .heading{
@@ -75,6 +76,11 @@ $mainCSS = <<< EOT
     box-shadow: 5px 10px #888888;
     margin: 16px 0;
 }
+.productName {
+    overflow: hidden;
+    text-overflow: ellipsis; 
+    white-space: nowrap;
+}
 EOT;
 
 $productCSS = <<< EOT
@@ -91,6 +97,10 @@ $productCSS = <<< EOT
 }
 .carousel-control-next:hover {
     background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(128, 128, 128, 0.3));
+}
+.original {
+    text-decoration: line-through;
+    opacity: 0.5;
 }
 .product-btn {
     width: 80%; 
@@ -113,6 +123,17 @@ $productCSS = <<< EOT
 .feedback-user {
     font-weight: bold;
     color: #065fd4;
+    font-size: 18px;
+    margin-top: 4px;
+}
+.feedback-content {
+    font-size: 15px;
+    margin-bottom: 8px;
+}
+.ads {
+    display: flex;
+    justify-content: flex-end;
+    height: 600px;
 }
 @media (max-width: 991.98px) {
     #productGallery {
@@ -121,6 +142,14 @@ $productCSS = <<< EOT
     }
     .carousel-item {
         height: 50vh
+    }
+    .ads {
+        display: block;
+        height: 320px;
+        overflow: hidden;
+    }
+    .ads-img {
+        width: 100%;
     }
 }
 EOT;
@@ -144,6 +173,11 @@ $html = <<< EOT
         .content_template {
             min-height: 40vh;
         }
+        .gender-title {
+            text-align: left;
+            margin-top: 32px;
+            font-size: 28px!important;
+        }
 
         /* Header CSS */
         .navbar-brand {
@@ -151,6 +185,7 @@ $html = <<< EOT
             left: 50%;
             transform: translateX(-50%);
             font-weight: bold;
+            font-size: 24px;
         }
 
         /* Footer CSS */
@@ -190,6 +225,12 @@ $html = <<< EOT
             color: #6c757d;
             border: 0;
         }
+        .copyright {
+            font-size: 12px;
+            text-align: center;
+            margin-top: 20px;
+            opacity: 0.7
+        }
 
         /* Content CSS */
         $css
@@ -198,7 +239,7 @@ $html = <<< EOT
 </head>
 <body>
     <!-- Navbar content -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light px-3">
         <div class="container-fluid ">
             <a class="navbar-brand" href="index.php">BagBag</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -217,6 +258,8 @@ $html = <<< EOT
                             <li><a class="dropdown-item" href="index.php?page=category&productCategory=Backpack">Backpacks</a></li>
                             <li><a class="dropdown-item" href="index.php?page=category&productCategory=Handbag">Handbags</a></li>
                             <li><a class="dropdown-item" href="index.php?page=category&productCategory=Crossbody">Crossbody Bags</a></li>
+                            <li><a class="dropdown-item" href="index.php?page=category&productCategory=Shoulder">Shoulder Bags</a></li>
+                            <li><a class="dropdown-item" href="index.php?page=category&productCategory=Purse">Purses</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
@@ -224,9 +267,18 @@ $html = <<< EOT
                             Brands
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink2">
-                            <li><a class="dropdown-item" href="index.php?page=brand&productBrand=Backpack">Link 1</a></li>
-                            <li><a class="dropdown-item" href="index.php?page=brand&productBrand=Backpack">Link 2</a></li>
-                            <li><a class="dropdown-item" href="index.php?page=brand&productBrand=Backpack">Link 3</a></li>
+                            <li><a class="dropdown-item" href="index.php?page=brand&productBrand=AdventureGear">AdventureGear</a></li>
+                            <li><a class="dropdown-item" href="index.php?page=brand&productBrand=UrbanTrek">UrbanTrek</a></li>
+                            <li><a class="dropdown-item" href="index.php?page=brand&productBrand=Nomad">Nomad</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink3" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Collections
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink3">
+                            <li><a class="dropdown-item" href="index.php?page=gender&productGender=Male">Men's Collection</a></li>
+                            <li><a class="dropdown-item" href="index.php?page=gender&productGender=Female">Women's Collection</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -256,36 +308,37 @@ $html = <<< EOT
     <div class="container">
         <div class="row">
             <div class="col-md-3 footer-col">
-                <h4>ĐĂNG KÝ BẢN TIN</h4>
-                <p>Nhận ngay những chương trình ưu đãi độc quyền chỉ dành cho thành viên theo dõi email</p>
+                <h4>NEWSLETTER SUBSCRIPTION</h4>
+                <p>Stay updated with our latest news and offers by subscribing to our newsletter.</p>
                 <form>
                     <div class="input-group">
-                        <input type="email" class="form-control" placeholder="Email của bạn">
+                        <input type="email" class="form-control" placeholder="Your email here">
                         <button class="btn btn-primary" type="submit">→</button>
                     </div>
                 </form>
             </div>
 
             <div class="col-md-3 footer-col">
-                <h4>KHÁM PHÁ CHIP.VN</h4>
+                <h4>EXPLORE BAGBAG</h4>
                 <ul>
-                    <li><a href="#">Túi xách</a></li>
-                    <li><a href="#">Balo</a></li>
-                    <li><a href="#">Bóp ví</a></li>
-                    <li><a href="#">Bộ sưu tập túi gấu</a></li>
+                    <li><a href="index.php?page=category&productCategory=Backpack">Backpacks</a></li>
+                    <li><a href="index.php?page=category&productCategory=Handbag">Handbags</a></li>
+                    <li><a href="index.php?page=category&productCategory=Crossbody">Crossbody Bags</a></li>
+                    <li><a href="index.php?page=category&productCategory=Shoulder">Shoulder Bags</a></li>
+                    <li><a href="index.php?page=category&productCategory=Purse">Purses</a></li>
                 </ul>
             </div>
 
             <div class="col-md-3 footer-col">
-                <h4>VỀ CHIP.VN</h4>
+                <h4>ABOUT BAGBAG</h4>
                 <ul>
-                    <li><a href="#">Giới thiệu</a></li>
-                    <li><a href="#">Tuyển dụng bán hàng</a></li>
-                    <li><a href="#">Tuyển dụng Content</a></li>
+                    <li><a href="#">Our Mission</a></li>
+                    <li><a href="#">Our Value</a></li>
+                    <li><a href="#">Our Team</a></li>
                 </ul>
             </div>
             <div class="col-md-3 footer-col">
-                <h4>Địa chỉ</h4>
+                <h4>Address</h4>
                 <ul>
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d204340.34776898715!2d105.41198893929862!3d21.012077787605445!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab4cd376479b%3A0xbc2e0bb9db373ed2!2zOGEgVMO0biBUaOG6pXQgVGh1eeG6v3QsIE3hu7kgxJDDrG5oLCBD4bqndSBHaeG6pXksIEjDoCBO4buZaSAxMDAwMDAsIFZp4buHdCBOYW0!5e0!3m2!1svi!2s!4v1712785336820!5m2!1svi!2s" width="300" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </ul>
@@ -301,6 +354,9 @@ $html = <<< EOT
                     <a href="#"><i class="fab fa-tiktok"></i></a>
                 </div>
             </div>
+        </div>
+        <div class="row">
+            <span class="copyright">© 2024 BagBag by FPT Aptech. All rights reserved.</span>
         </div>
     </div>
 </footer>

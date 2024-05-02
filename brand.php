@@ -3,7 +3,7 @@
 require_once 'template/templates.php';
 require 'db.php'; // Kết nối với cơ sở dữ liệu
 
-$sql = "SELECT productCode, productName, buyPrice, productAvailability FROM products";
+$sql = "SELECT * FROM products";
 $result = $conn->query($sql);
 while ($row = $result->fetch_assoc()) {
     $products[] = $row;
@@ -14,14 +14,15 @@ while ($row = $result->fetch_assoc()) {
 
 <div class="container">
     <div class="row product">
+        <h1><span class='fw-bold'><?php echo $_GET['productBrand']?></span> products</h1>
     <?php foreach ($products as $product): ?>
         <a class='col-6 col-md-4 col-lg-3' href='index.php?page=product&productCode=<?=$product['productCode']?>'>
             <div class='card'>
                 <div class='ccc'>
-                    <p class='text-center'><img src="./imgs/camera.jpg"></p>
+                    <p class='text-center'><img src="./imgs/<?=$product['productCategory']?>/<?=$product['productCode'] * 3?>.jpg"></p>
                 </div>
                 <div class='card-body'>
-                    <h2><?=$product['productName']?></h2>
+                    <h2 class="productName"><?=$product['productName']?></h2>
                     <p class='price'>
                         <?php 
                         if (!$product['productAvailability']) {
