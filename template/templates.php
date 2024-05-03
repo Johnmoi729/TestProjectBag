@@ -143,10 +143,28 @@ $productCSS = <<< EOT
     font-size: 15px;
     margin-bottom: 8px;
 }
-.ads {
+.product-ads {
     display: flex;
-    justify-content: flex-end;
+    flex-direction: column;
+    align-items: flex-end;
     height: 600px;
+    overflow: hidden;
+}
+.product-ads-link {
+    display: block;
+    width: 60%;
+    height: 100%;
+}
+.product-ads span {
+    font-size: 12px;
+    color: #ccc;
+}
+.product-ads-img {
+    background-image: url('../imgs/advert/ad1.jpg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
 }
 @media (max-width: 991.98px) {
     #productGallery {
@@ -156,13 +174,17 @@ $productCSS = <<< EOT
     .carousel-item {
         height: 50vh
     }
-    .ads {
+    .product-ads {
         display: block;
-        height: 320px;
+        height: 260px;
         overflow: hidden;
     }
-    .ads-img {
+    .product-ads-link {
         width: 100%;
+    }
+    .product-ads-img {
+        background-size: cover;
+        background-position: 0% 12%;
     }
 }
 EOT;
@@ -203,6 +225,22 @@ $html = <<< EOT
         .jumbotron .container {
             padding-left: 40px;
         }
+        .ads {
+            width: 70%;
+            height: 196px;
+            margin: 20px auto;
+        }
+        .ads a {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+        .ads-img {
+            background-image: url('../imgs/advert/ad2.jpg');
+            background-size: cover;
+            background-position: 0% 50%;
+            height: 100%;
+        }
 
         /* Header CSS */
         .navbar-brand {
@@ -217,7 +255,7 @@ $html = <<< EOT
         .footer {
             background-color: #F8F9FA;
             padding: 40px 0;
-            margin-top: 40px;
+            margin-top: 60px;
         }
         .footer-col {
             margin-bottom: 30px;
@@ -323,11 +361,40 @@ $html = <<< EOT
     </nav>
 <div class="content_template">
 EOT;
-echo $html;
+
+$jumbotron = <<< EOT
+<div class="jumbotron">
+    <div class="container">
+        <h1 class="display-4">Welcome to BagBag</h1>
+        <p class="lead">Explore a wide range of high-quality bags for every occasion.</p>
+        <p>From stylish backpacks to elegant handbags, we have the perfect accessory to complement your style.</p>
+        <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+    </div>
+</div>
+EOT;
+
+$ads = <<< EOT
+
+<div class="container">
+    <div class="ads">
+        <a href="index.php">
+            <div class="ads-img"></div>
+        </a>
+    </div>
+</div>
+EOT;
+$header = $title == 'BagBag' ? $html . $jumbotron : $html;
+echo $header;
+if ($page != 'product') echo $ads;
 }
 
 function template_footer() {
 $html = <<< EOT
+<div class="ads">
+    <a href="index.php">
+        <div class="ads-img"></div>
+    </a>
+</div>
 </div>
 <footer class="footer">
     <div class="container">

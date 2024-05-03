@@ -14,13 +14,15 @@ while ($row = $result->fetch_assoc()) {
 }
 $stmt->close();
 
+$pagetitle = $_GET['productCategory'] . ($_GET['productCategory'] == 'Shoulder' || $_GET['productCategory'] == 'Crossbody' ? ' Bags' : 's');
+
 ?>
 
-<?=template_header('Home', 'main')?>
+<?=template_header('BagBag | ' . $pagetitle, 'main')?>
 
 <div class="container">
     <div class="row product">
-    <h1><?php echo $_GET['productCategory'] . ($_GET['productCategory'] == 'Shoulder' || $_GET['productCategory'] == 'Crossbody' ? ' Bags' : 's') ?></h1>
+    <h1><?php echo $pagetitle ?></h1>
     <?php foreach ($products as $product): ?>
         <a class='col-6 col-md-4 col-lg-3' href='index.php?page=product&productCode=<?=$product['productCode']?>'>
             <div class='card'>

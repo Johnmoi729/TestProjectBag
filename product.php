@@ -36,9 +36,9 @@ if (isset($_GET['productCode'])) {
 
 ?>
 
-<?=template_header('Home', 'product')?>
+<?=template_header('BagBag | ' . $product['productName'], 'product')?>
 
-<div class="container mt-5">
+<div class="container mt-3">
         <!-- Section 1: Product basic information -->
         <div class="row">
             <!-- Gallery carousel -->
@@ -71,7 +71,6 @@ if (isset($_GET['productCode'])) {
                     <h2 class='mb-4'><?=$product['productName']?></h2>
                     <p class='original mb-2'>$<?=round($product['buyPrice'] * 1.13, 2)?></p>
                     <h3 class='mb-4'>$<?=$product['buyPrice']?></h3>
-                    <p>Category: <?=$product['productCategory']?></p>
                     <p><?=$product['productIntroduction']?></p>
                 </div>
                 <div class="text-center mb-5">
@@ -84,8 +83,8 @@ if (isset($_GET['productCode'])) {
             <!-- Section 2: Description -->
             <div class="description">
                 <h4>Description</h4>
-                <p id="productDescription"><?=$product['productName']?><br><?=$product['productDescription']?></p>
-                <!-- <button onclick="downloadDocument()">Download Description</button> -->
+                <p id="productDescription">Category: <?=$product['productCategory']?><br><?=$product['productDescription']?></p>
+                <!-- <button onclick=downloadDescription()>Download Description</button> -->
             </div>
         </div>
         <div class="row section">
@@ -136,8 +135,11 @@ if (isset($_GET['productCode'])) {
                 </div>
             </div>
 
-            <div class="ads col-lg-6">
-                <img class="ads-img" src='./imgs/advert/ad1.jpg'/>
+            <div class="product-ads col">
+                <span>Advertisement</span>
+                <a href="index.php" class="product-ads-link">
+                    <div class="product-ads-img"></div>
+                </a>
             </div>
         </div>
     </div>

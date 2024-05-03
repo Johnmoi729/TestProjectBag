@@ -10,7 +10,7 @@ while ($row = $result->fetch_assoc()) {
 }
 ?>
 
-<?=template_header('Home', 'main')?>
+<?=template_header('BagBag | ' . $_GET['productBrand'], 'main')?>
 
 <div class="container">
     <div class="row product">

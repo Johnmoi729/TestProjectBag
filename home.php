@@ -16,16 +16,7 @@ while ($row2 = $result2->fetch_assoc()) {
 }
 ?>
 
-<?=template_header('Home', 'main')?>
-
-<div class="jumbotron">
-    <div class="container">
-        <h1 class="display-4">Welcome to BagBag</h1>
-        <p class="lead">Explore a wide range of high-quality bags for every occasion.</p>
-        <p>From stylish backpacks to elegant handbags, we have the perfect accessory to complement your style.</p>
-        <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
-    </div>
-</div>
+<?=template_header('BagBag', 'main')?>
 
 <div class="container">
     <div class="row product">
