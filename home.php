@@ -37,8 +37,12 @@ while ($row2 = $result2->fetch_assoc()) {
                         if (!$product['productAvailability']) {
                             echo "<span class='sold-out'>Hết hàng</span>";
                         } else {
-                            echo "<span class='original'>$" . round($product['buyPrice'] * 1.13, 2) . "</span><br>";
-                            echo "<span>$" . round($product['buyPrice'], 2) . "</span>";
+                            if ($product['productDiscount'] > 0) {
+                                echo "<span class='menu-discount'><span class='original'>$" . htmlspecialchars($product['buyPrice']) . "</span><span class='discount-percent'>-" . $product['productDiscount'] . "%</span></span>";
+                                echo "<span>$" . round($product['buyPrice'] * (100 - $product['productDiscount']) / 100, 2) . "</span>";
+                            } else {
+                                echo "<span>$" . round($product['buyPrice'], 2) . "</span>";
+                            }
                         }
                         ?>
                     <p class='text-center'><input type='submit' name='Save' value='Buy' class=' cc1'></p>

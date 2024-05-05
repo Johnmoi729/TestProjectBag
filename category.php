@@ -36,8 +36,12 @@ $pagetitle = $_GET['productCategory'] . ($_GET['productCategory'] == 'Shoulder' 
                         if (!$product['productAvailability']) {
                             echo "<span class='sold-out'>Hết hàng</span>";
                         } else {
-                            echo "<span class='original'>$" . htmlspecialchars($product['buyPrice']) . "</span><br>";
-                            echo "<span>$" . htmlspecialchars($product['buyPrice']) . "</span>";
+                            if ($product['productDiscount'] > 0) {
+                                echo "<span class='menu-discount'><span class='original'>$" . htmlspecialchars($product['buyPrice']) . "</span><span class='discount-percent'>-" . $product['productDiscount'] . "%</span></span>";
+                                echo "<span>$" . round($product['buyPrice'] * (100 - $product['productDiscount']) / 100, 2) . "</span>";
+                            } else {
+                                echo "<span>$" . round($product['buyPrice'], 2) . "</span>";
+                            }
                         }
                         ?>
                     <p class='text-center'><input type='submit' name='Save' value='Buy' class=' cc1'></p>

@@ -29,6 +29,9 @@ $mainCSS = <<< EOT
 .product .price {
     font-size: 16px;
     color: #666;
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
 }
 .product .price .original {
     text-decoration: line-through;
@@ -77,6 +80,19 @@ $mainCSS = <<< EOT
     border: 1px solid #000;
     height: 40px;
     border-radius: 7px;
+}
+.menu-discount {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.discount-percent {
+    background-color: red;
+    color: #fff;
+    font-size: 12px;
+    margin-left: 8px;
+    padding: 2px 4px;
+    border-radius: 4px;
 }
 @media only screen and (max-width: 553px) {
     .card{
@@ -165,6 +181,13 @@ $productCSS = <<< EOT
     background-repeat: no-repeat;
     width: 100%;
     height: 100%;
+}
+.product-discount {
+    background-color: red;
+    color: #fff;
+    border-radius: 8px;
+    font-size: 16px;
+    padding: 4px;
 }
 @media (max-width: 991.98px) {
     #productGallery {
@@ -390,10 +413,12 @@ if ($page != 'product') echo $ads;
 
 function template_footer() {
 $html = <<< EOT
-<div class="ads">
-    <a href="index.php">
-        <div class="ads-img"></div>
-    </a>
+<div class="container">
+    <div class="ads">
+        <a href="index.php">
+            <div class="ads-img"></div>
+        </a>
+    </div>
 </div>
 </div>
 <footer class="footer">

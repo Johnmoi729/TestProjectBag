@@ -69,8 +69,8 @@ if (isset($_GET['productCode'])) {
             <div class="col-md-6 col-12 d-flex flex-column justify-content-between">
                 <div class="p-4">
                     <h2 class='mb-4'><?=$product['productName']?></h2>
-                    <p class='original mb-2'>$<?=round($product['buyPrice'] * 1.13, 2)?></p>
-                    <h3 class='mb-4'>$<?=$product['buyPrice']?></h3>
+                    <p class='original mb-2'>$<?=$product['buyPrice']?></p>     
+                    <h3 class='mb-4 d-flex align-items-center'>$<?=round($product['buyPrice'] * (100 - $product['productDiscount']) / 100, 2)?> <span class="product-discount">-<?=$product['productDiscount']?>%</span></h3>
                     <p><?=$product['productIntroduction']?></p>
                 </div>
                 <div class="text-center mb-5">
