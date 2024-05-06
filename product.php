@@ -2,6 +2,8 @@
 
 require_once 'template/templates.php';
 require 'db.php';
+require __DIR__ . '/vendor/autoload.php';
+use Dompdf\Dompdf;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['name'], $_POST['email'], $_POST['feedback'], $_GET['productCode'])) {
     // Insert feedback into the database
@@ -32,6 +34,24 @@ if (isset($_GET['productCode'])) {
     }
 } else {
     exit('Product does not exist!');
+}
+
+if(isset($_POST['downloadDescription'])) { 
+    $dompdf = new Dompdf;
+    $gender = $product['productGender'] == 'Male' ? "Men's Collection" : "Women's Collection";
+    $content = <<<EOT
+    <h1>{$product['productName']}</h1>
+    <h3>{$product['productIntroduction']}</h3>
+    <ul>
+        <li>Category: {$product['productCategory']}</li>
+        <li>Brand: {$product['productBrand']}</li>
+        <li>{$gender}</li>
+    </ul>
+    <p>{$product['productDescription']}</p>
+    EOT;
+    $dompdf->loadHtml($content);
+    $dompdf->render();
+    $dompdf->stream(str_replace(" ", "_", $product['productName']));
 }
 
 ?>
@@ -84,7 +104,9 @@ if (isset($_GET['productCode'])) {
             <div class="description">
                 <h4>Description</h4>
                 <p id="productDescription">Category: <?=$product['productCategory']?><br><?=$product['productDescription']?></p>
-                <!-- <button onclick=downloadDescription()>Download Description</button> -->
+                <form method="post"> 
+                    <input type="submit" name="downloadDescription" value="Download Description" class="btn btn-primary"/> 
+                </form> 
             </div>
         </div>
         <div class="row section">
