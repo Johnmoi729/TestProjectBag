@@ -59,7 +59,7 @@ CREATE TABLE `products` (
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`productCode`, `productName`, `productCategory`, `productGender`, `productBrand`, `productIntroduction`, `productDescription`, `buyPrice`, `productAvailability`) VALUES
+INSERT INTO `products` (`productCode`, `productName`, `productCategory`, `productGender`, `productBrand`, `productIntroduction`, `productDescription`, `buyPrice`, `productAvailability`, `productDiscount`) VALUES
 (1, 'Outdoor Adventure Backpack', 'Backpack', 'Male', 'AdventureGear', 'Gear up for your next outdoor expedition with our versatile backpack.', 'This durable backpack is designed for outdoor enthusiasts, featuring multiple compartments and adjustable straps for maximum comfort and convenience.', 79.99, 1, 20),
 (2, 'City Explorer Backpack', 'Backpack', 'Female', 'UrbanTrek', 'Navigate urban landscapes in style with our sleek and functional backpack.', 'Ideal for daily commuting or city exploration, this backpack offers ample storage space and a modern design.', 69.99, 1, 25),
 (3, 'Traveler\'s Backpack', 'Backpack', 'Male', 'Nomad', 'Embark on your journey with confidence using our reliable traveler\'s backpack.', 'With its rugged construction and travel-friendly features, this backpack is your perfect companion for globetrotting adventures.', 89.99, 1, 30),
